@@ -1,10 +1,11 @@
 
 import {champ, btnAdd, mesTaches, clearAll, finish, aFaire, tout} from "./variable.js"
-
+let body = document.body
+console.log(body);
 // event pour rajouter une tache
 btnAdd.addEventListener('click', ()=>{
-    console.log(mesTaches);
     let barreTache = document.createElement('div')
+    barreTache.style = "margin : 4px 0 ;border-radius : 5px"
     let tache = document.createElement('span')
     tache.innerText = champ.value;
     tache.setAttribute('class', 'ml-2')
@@ -49,4 +50,26 @@ btnAdd.addEventListener('click', ()=>{
 
     // effacer champ apres le add
     champ.value = ""
+
+
+
+    // event bouton valide 
+    btnValide.addEventListener('click', () =>  {
+        barreTache.classList.toggle('bg-primary')
+        barreTache.classList.toggle('done')
+    })
+
+    //event bouton modif
+
 })
+
+
+
+// effacé toutes les taches
+
+clearAll.addEventListener('click', () => {
+    // let allTask = mesTaches.querySelectorAll('div')
+    // mesTaches.style = "display:none"
+
+})
+
