@@ -15812,3 +15812,19 @@ a.text-dark:hover, a.text-dark:focus {
 .container {
   margin: 0 10%;
 }
+
+.container .liste div {
+  background-color: white;
+  height: 50px;
+  display: flex;
+  align-items: center;
+}
+
+.container .liste div span {
+  flex: 9;
+}
+
+.container .liste div .bouton {
+  flex: 1;
+  margin: 0 2px;
+}
