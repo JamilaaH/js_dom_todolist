@@ -43,10 +43,17 @@ btnAdd.addEventListener('click', ()=>{
     iconeSupp.setAttribute('class', "fas fa-trash-alt")
     btnSupp.append(iconeSupp)
 
+    // btn save apres modif
+    let btnSave = document.createElement('button')
+    btnSave.setAttribute('class', " d-none save btn btn-success ")
+
+    let iconeSave = document.createElement('i')
+    iconeSave.setAttribute('class', "fas fa-save")
+    btnSave.append(iconeSave)
 
 
 
-    barreTache.append(tache,input,btnValide,btnModif,btnSupp)
+    barreTache.append(tache,input,btnValide,btnModif,btnSupp, btnSave)
 
     // effacer champ apres le add
     champ.value = ""
@@ -60,12 +67,47 @@ btnAdd.addEventListener('click', ()=>{
     })
 
     //event bouton modif
+    btnModif.addEventListener('click', ()=> {
+        btnSupp.setAttribute("class", "d-none")
+        btnValide.setAttribute("class",  "d-none")
+        btnModif.setAttribute("class", "  d-none ml-auto mr-5 ")
+        btnSave.setAttribute("class", "btn btn-success d-block ml-auto")
+        tache.innerText = input.innerText
+        tache.style.display = "none"
+        input.style.display = "block"
+    })
+
+
+    // enregistrer après modif
+    btnSave.addEventListener('click', ()=> {
+        btnSupp.setAttribute('class', "bouton btn btn-danger d-block")
+        btnValide.setAttribute('class', "bouton btn btn-primary d-block")
+        btnModif.setAttribute('class', "bouton btn btn-success d-block")
+        btnSave.setAttribute("class", "d-none")
+        tache.innerText = input.value
+        input.style.display = "none"
+        tache.style.display = "block"        
+    })
+
+
+
+
+
+
+
+
+
+
+
 
 })
 
 
 
-// effacé toutes les taches
+
+
+
+// effacer toutes les taches
 
 clearAll.addEventListener('click', () => {
     // let allTask = mesTaches.querySelectorAll('div')
