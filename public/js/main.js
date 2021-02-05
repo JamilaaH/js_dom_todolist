@@ -1,20 +1,31 @@
 
 import {champ, btnAdd, mesTaches, clearAll, finish, aFaire, tout} from "./variable.js"
-let body = document.body
-console.log(body);
 // event pour rajouter une tache
 btnAdd.addEventListener('click', ()=>{
+    //div tache
     let barreTache = document.createElement('div')
+    barreTache.setAttribute('class', 'tout')
+    barreTache.setAttribute('class', 'faire')
     barreTache.style = "margin : 4px 0 ;border-radius : 5px"
+
+    //nom de la tache 
     let tache = document.createElement('span')
-    tache.innerText = champ.value;
-    tache.setAttribute('class', 'ml-2')
-    mesTaches.appendChild(barreTache)
+    if (!champ.value.replace(/\s+/, '').length) {
+        alert("remplir le champ")
+    } else {
+        tache.innerText = champ.value;    
+        tache.setAttribute('class', 'ml-2')
+        mesTaches.appendChild(barreTache)
+    }
+
+
+    //input qui sera active pr la modif
     let input = document.createElement('input')
     input.style.height = "40px"
     input.style.width = "150px"
     input.style.display ="none"
     input.style.marginLeft ="30px"
+
     // btn valide
     let btnValide = document.createElement('button')
     btnValide.setAttribute('class', "bouton btn btn-primary ")
@@ -31,9 +42,6 @@ btnAdd.addEventListener('click', ()=>{
     let iconeModif = document.createElement('i')
     iconeModif.setAttribute('class', "fas fa-save")
     btnModif.append(iconeModif)
-
-
-
 
     // btn supp
     let btnSupp = document.createElement('button')
@@ -63,6 +71,7 @@ btnAdd.addEventListener('click', ()=>{
     // event bouton valide 
     btnValide.addEventListener('click', () =>  {
         barreTache.classList.toggle('bg-primary')
+        barreTache.classList.toggle('faire')
         barreTache.classList.toggle('done')
     })
 
@@ -95,16 +104,38 @@ btnAdd.addEventListener('click', ()=>{
         barreTache.style.display = "none"
     })
 
+    // btn "terminé"
+    finish.addEventListener('click', ()=> {
+        if (barreTache.classList.contains("done")) {
+            barreTache.classList.remove('faire')
+            barreTache.style.display ="flex"
+
+        } else {
+            barreTache.style.display = "none"
+        }
+    })
 
 
+    aFaire.addEventListener('click', ()=> {
+        if (barreTache.classList.contains('faire')) {
+            barreTache.style.display ="flex"
+        } else {
+            barreTache.style.display ="none"        
+        }
+    })
 
+    tout.addEventListener('click', () => {
+        if (barreTache.classList.contains('tout')) {
+            barreTache.style.display = "flex"
+        }
+    })
 
-
-
-
-
-
-
+    // effacer toutes les taches
+    
+    clearAll.addEventListener('click', () => {
+        barreTache.style.display = "none"
+    })
+    
 })
 
 
@@ -112,11 +143,4 @@ btnAdd.addEventListener('click', ()=>{
 
 
 
-// effacer toutes les taches
-
-clearAll.addEventListener('click', () => {
-    // let allTask = mesTaches.querySelectorAll('div')
-    // mesTaches.style = "display:none"
-
-})
 
