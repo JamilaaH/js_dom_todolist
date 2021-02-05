@@ -90,6 +90,11 @@ btnAdd.addEventListener('click', ()=>{
     })
 
 
+    // btn supprime la tache 
+    btnSupp.addEventListener("click", ()=> {
+        barreTache.style.display = "none"
+    })
+
 
 
 
